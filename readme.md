@@ -22,7 +22,7 @@ Typescript Code -> Typescript Compiler -> Plain old Javascript
 1. Fetch Data
    Fetching https://jsonplaceholder.typicode.com/todos/1
 
-```
+```json
 {
   "userId": 1,
   "id": 1,
@@ -40,7 +40,7 @@ Typescript Code -> Typescript Compiler -> Plain old Javascript
 
 3. Create a package.json
 
-```
+```bash
 > npm init -y
 
 Wrote to C:\Programming\2026-project\typescript-pratice\fetch_json\package.json:
@@ -63,7 +63,7 @@ Wrote to C:\Programming\2026-project\typescript-pratice\fetch_json\package.json:
    `> npm install --save-dev @types/node`
 5. create file fetch_json/index.ts
 
-```
+```js
 import axios from 'axios';
 
 const url = 'https://jsonplaceholder.typicode.com/todos/1';
