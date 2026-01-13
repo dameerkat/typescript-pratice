@@ -42,6 +42,7 @@ Typescript Code -> Typescript Compiler -> Plain old Javascript
 
 ```
 > npm init -y
+
 Wrote to C:\Programming\2026-project\typescript-pratice\fetch_json\package.json:
 {
   "name": "fetch_json",
@@ -75,3 +76,16 @@ axios.get(url).then((res) => {
    `> tsc index.ts`
 7. Running index.js
    `> node index.js`
+
+## Using Typescript Interface
+
+Interfaces are used to define the shape of an object.
+
+```ts
+interface Todo {
+  userId: number;
+  id: number;
+  title: string;
+  completed: boolean;
+}
+```
