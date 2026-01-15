@@ -114,7 +114,7 @@ interface Todo {
 | symbol          |
 | null            |
 
-**Example**
+Example
 
 ```ts
 // Date
@@ -149,15 +149,129 @@ console.log(cat.getName());
 - Types are used by the Typescript Compiler to analyze our code for errors
 - Types allow other engineers to understand what values are flowing around our codebase
 
-**Where do we use types?**
-
 ### 2. Type Annotations & Type Inference
 
 `Type Annotations` : Code we add to tell Typescript what type of value a variable will refer to
 
+```ts
+let apples: number = 5;
+// if you hover, you see popup says let apples: number
+```
+
 `Type Inference` : Typescript tries to figure out what type of value a variable refers to
-Variables
-Functions
-Objects
+
+```ts
+let apples = 5;
+// if you hover, you see popup says let apples: number
+```
+
+### How type inference works
+
+If declaration and initialization are on the same line, Typescript will figure out the type of 'color' for us
+
+| variable declaration |     | variable Initialization |
+| :------------------: | :-: | :---------------------: |
+|     const color      |  =  |          'red'          |
+
+In this case, Typescript will no longer figure out the type
+
+```ts
+let apples;
+apples = 5;
+```
+
+### type annotation with variables, Functions, Objects
+
+Example
+
+```ts
+let apples: number = 5;
+let speed: string = 'fast';
+let hasName: boolean = true;
+
+let nothingMuch: null = null;
+let nothing: undefined = undefined;
+
+let now: Date = new Date();
+
+// Array
+let colors: string[] = ['red', 'green', 'blue'];
+let myNumber: number[] = [1, 2, 3, 4, 5];
+
+// Class
+class Car {}
+let car: Car = new Car();
+
+// Object literal
+let point: { x: number; y: number } = {
+  x: 10,
+  y: 20,
+};
+
+// Function
+// annotation part : (i:number) => void
+const logNumber: (i: number) => void = (i: number) => {
+  console.log(i);
+};
+```
+
+### When to use type annotation
+
+1. When a function returns the 'any' type and we need to clarify the value
+
+This function returns 'any' type
+
+```ts
+const json = '{"x":10, "y": 20}';
+const coordinates = JSON.parse(json); // type is any
+console.log(coordinates); // {x: 10, y: 20}
+```
+
+How to fix any type
+
+```ts
+const json = '{"x":10, "y": 20}';
+const coordinates: { x: number; y: number } = JSON.parse(json);
+console.log(coordinates); // {x: 10, y: 20}
+```
+
+2. When we declare a variable on one line then initialize it later
+   In this case, foundWord is 'any' type
+
+```ts
+let words = ['red', 'green', 'blue'];
+let foundWord; // any type
+for (let word of words) {
+  if (word === 'green') {
+    foundWord = true;
+  }
+}
+```
+
+Making foundWord as 'boolean' type
+
+```ts
+let words = ['red', 'green', 'blue'];
+let foundWord: boolean; // add boolean type
+for (let word of words) {
+  if (word === 'green') {
+    foundWord = true;
+  }
+}
+```
+
+3. When we want a variable to have a type that can't be inferred
+
+```ts
+// This example is not that good example
+let numbers = [-10, -1, 12];
+let numberAboveZero: boolean | number = false;
+
+for (let number of numbers) {
+  if (number > 0) {
+    numberAboveZero = number;
+  }
+}
+```
 
 ## Design Patterns
