@@ -149,7 +149,7 @@ console.log(cat.getName());
 - Types are used by the Typescript Compiler to analyze our code for errors
 - Types allow other engineers to understand what values are flowing around our codebase
 
-### 2. Type Annotations & Type Inference
+### 2. type annotation with variables
 
 `Type Annotations` : Code we add to tell Typescript what type of value a variable will refer to
 
@@ -179,8 +179,6 @@ In this case, Typescript will no longer figure out the type
 let apples;
 apples = 5;
 ```
-
-### type annotation with variables, Functions, Objects
 
 Example
 
@@ -214,6 +212,84 @@ const logNumber: (i: number) => void = (i: number) => {
   console.log(i);
 };
 ```
+
+### type annotation with Functions
+
+`Type Annotations` : Code we add to tell Typescript what type of arguments a function will receive and what type of values it will return
+
+```ts
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+```
+
+`Type Inference` : Typescript tries to figure out what type of value a function will return
+
+```ts
+// Typescript knows we are going return number
+const add = (a: number, b: number) => {
+  return a + b;
+};
+```
+
+Example
+
+```ts
+// although we get inference, we will add type annotations on return
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+
+const subtract = (a: number, b: number): number => {
+  return a - b;
+};
+
+function divide(a: number, b: number): number {
+  return a / b;
+}
+
+// anonymous function
+const multiply = function (a: number, b: number): number {
+  return a * b;
+};
+
+// this will not return anything
+const logger = (message: string): void => {
+  console.log(message);
+};
+
+const throwErrorNever = (message: string): never => {
+  throw new Error();
+};
+
+// usually you handle error like this
+const throwError = (message: string): string => {
+  if (!message) {
+    throw new Error(message);
+  }
+  return message;
+};
+
+const todaysWeather = {
+  date: new Date(),
+  weather: 'sunny',
+};
+
+// Destructing with Annotations
+const logWeather = ({
+  date,
+  weather,
+}: {
+  date: Date;
+  weather: string;
+}): void => {
+  console.log(weather);
+};
+```
+
+**although we get inference, we will add type annotations on return**
+
+### type annotation with Objects
 
 ### When to use type annotation
 
