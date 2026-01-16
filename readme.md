@@ -149,148 +149,6 @@ console.log(cat.getName());
 - Types are used by the Typescript Compiler to analyze our code for errors
 - Types allow other engineers to understand what values are flowing around our codebase
 
-### 2. type annotation with variables
-
-`Type Annotations` : Code we add to tell Typescript what type of value a variable will refer to
-
-```ts
-let apples: number = 5;
-// if you hover, you see popup says let apples: number
-```
-
-`Type Inference` : Typescript tries to figure out what type of value a variable refers to
-
-```ts
-let apples = 5;
-// if you hover, you see popup says let apples: number
-```
-
-### How type inference works
-
-If declaration and initialization are on the same line, Typescript will figure out the type of 'color' for us
-
-| variable declaration |     | variable Initialization |
-| :------------------: | :-: | :---------------------: |
-|     const color      |  =  |          'red'          |
-
-In this case, Typescript will no longer figure out the type
-
-```ts
-let apples;
-apples = 5;
-```
-
-Example
-
-```ts
-let apples: number = 5;
-let speed: string = 'fast';
-let hasName: boolean = true;
-
-let nothingMuch: null = null;
-let nothing: undefined = undefined;
-
-let now: Date = new Date();
-
-// Array
-let colors: string[] = ['red', 'green', 'blue'];
-let myNumber: number[] = [1, 2, 3, 4, 5];
-
-// Class
-class Car {}
-let car: Car = new Car();
-
-// Object literal
-let point: { x: number; y: number } = {
-  x: 10,
-  y: 20,
-};
-
-// Function
-// annotation part : (i:number) => void
-const logNumber: (i: number) => void = (i: number) => {
-  console.log(i);
-};
-```
-
-### type annotation with Functions
-
-`Type Annotations` : Code we add to tell Typescript what type of arguments a function will receive and what type of values it will return
-
-```ts
-const add = (a: number, b: number): number => {
-  return a + b;
-};
-```
-
-`Type Inference` : Typescript tries to figure out what type of value a function will return
-
-```ts
-// Typescript knows we are going return number
-const add = (a: number, b: number) => {
-  return a + b;
-};
-```
-
-Example
-
-```ts
-// although we get inference, we will add type annotations on return
-const add = (a: number, b: number): number => {
-  return a + b;
-};
-
-const subtract = (a: number, b: number): number => {
-  return a - b;
-};
-
-function divide(a: number, b: number): number {
-  return a / b;
-}
-
-// anonymous function
-const multiply = function (a: number, b: number): number {
-  return a * b;
-};
-
-// this will not return anything
-const logger = (message: string): void => {
-  console.log(message);
-};
-
-const throwErrorNever = (message: string): never => {
-  throw new Error();
-};
-
-// usually you handle error like this
-const throwError = (message: string): string => {
-  if (!message) {
-    throw new Error(message);
-  }
-  return message;
-};
-
-const todaysWeather = {
-  date: new Date(),
-  weather: 'sunny',
-};
-
-// Destructing with Annotations
-const logWeather = ({
-  date,
-  weather,
-}: {
-  date: Date;
-  weather: string;
-}): void => {
-  console.log(weather);
-};
-```
-
-**although we get inference, we will add type annotations on return**
-
-### type annotation with Objects
-
 ### When to use type annotation
 
 1. When a function returns the 'any' type and we need to clarify the value
@@ -348,6 +206,169 @@ for (let number of numbers) {
     numberAboveZero = number;
   }
 }
+```
+
+### 2. type annotation with variables
+
+`Type Annotations` : Code we add to tell Typescript what type of value a variable will refer to
+
+```ts
+let apples: number = 5;
+// if you hover, you see popup says let apples: number
+```
+
+`Type Inference` : Typescript tries to figure out what type of value a variable refers to
+
+```ts
+let apples = 5;
+// if you hover, you see popup says let apples: number
+```
+
+**How type inference works**
+
+If declaration and initialization are on the same line, Typescript will figure out the type of 'color' for us
+
+| variable declaration |     | variable Initialization |
+| :------------------: | :-: | :---------------------: |
+|     const color      |  =  |          'red'          |
+
+In this case, Typescript will no longer figure out the type
+
+```ts
+let apples;
+apples = 5;
+```
+
+Type Annotation with Variables Example
+
+```ts
+let apples: number = 5;
+let speed: string = 'fast';
+let hasName: boolean = true;
+
+let nothingMuch: null = null;
+let nothing: undefined = undefined;
+
+let now: Date = new Date();
+
+// Array
+let colors: string[] = ['red', 'green', 'blue'];
+let myNumber: number[] = [1, 2, 3, 4, 5];
+
+// Class
+class Car {}
+let car: Car = new Car();
+
+// Object literal
+let point: { x: number; y: number } = {
+  x: 10,
+  y: 20,
+};
+
+// Function
+// annotation part : (i:number) => void
+const logNumber: (i: number) => void = (i: number) => {
+  console.log(i);
+};
+```
+
+### type annotation with Functions
+
+`Type Annotations` : Code we add to tell Typescript what type of arguments a function will receive and what type of values it will return
+
+```ts
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+```
+
+`Type Inference` : Typescript tries to figure out what type of value a function will return
+
+```ts
+// Typescript knows we are going return number
+const add = (a: number, b: number) => {
+  return a + b;
+};
+```
+
+**although we get inference, we will add type annotations on return**
+
+Type Annotation with Functions Example
+
+```ts
+// although we get inference, we will add type annotations on return
+const add = (a: number, b: number): number => {
+  return a + b;
+};
+
+const subtract = (a: number, b: number): number => {
+  return a - b;
+};
+
+function divide(a: number, b: number): number {
+  return a / b;
+}
+
+// anonymous function
+const multiply = function (a: number, b: number): number {
+  return a * b;
+};
+
+// this will not return anything
+const logger = (message: string): void => {
+  console.log(message);
+};
+
+const throwErrorNever = (message: string): never => {
+  throw new Error();
+};
+
+// usually you handle error like this
+const throwError = (message: string): string => {
+  if (!message) {
+    throw new Error(message);
+  }
+  return message;
+};
+
+const todaysWeather = {
+  date: new Date(),
+  weather: 'sunny',
+};
+
+// Destructing with Annotations
+const logWeather = ({
+  date,
+  weather,
+}: {
+  date: Date;
+  weather: string;
+}): void => {
+  console.log(weather);
+};
+```
+
+### type annotation with Objects
+
+Type Annotation with Objects Example
+
+```ts
+const profile = {
+  name: 'alex',
+  age: 20,
+  coordinates: {
+    lat: 0,
+    lng: 15,
+  },
+  setAge(age: number): void {
+    this.age = age;
+  },
+};
+
+const { age, name }: { age: number; name: string } = profile;
+const {
+  coordinates: { lat, lng },
+}: { coordinates: { lat: number; lng: number } } = profile;
 ```
 
 ## Design Patterns
