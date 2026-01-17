@@ -371,4 +371,44 @@ const {
 }: { coordinates: { lat: number; lng: number } } = profile;
 ```
 
+### Arrays in Typescript
+
+**why do we care?**
+
+1. TS can do type inference when extracting values from an array
+
+```ts
+// 1. Help with inference when extracting values
+const car = carMakers[0];
+```
+
+2. TS can prevent us from adding incompatible values to the array
+
+```ts
+// 2. prevent incompatible values
+// carMakers.push(100); // typescript shows an error
+```
+
+3. We can get help with 'map', 'forEach', 'reduce' functions
+
+```ts
+// 3. help with 'map'
+carMakers.map((car: string): string => {
+  return car.toUpperCase();
+});
+```
+
+4. Flexible - arrays can still contain multiple different types
+
+```ts
+// 4. flexible types
+const importantDates: (Date | string)[] = [new Date(), '2026-01-16'];
+importantDates.push('2026-01-17');
+importantDates.push(new Date());
+//importantDates.push(100); // typescript shows an error
+```
+
+**Where to use typed arrays?**
+Any time we need to represent a collection of records with some arbitrary sort order
+
 ## Design Patterns
