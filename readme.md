@@ -411,4 +411,29 @@ importantDates.push(new Date());
 **Where to use typed arrays?**
 Any time we need to represent a collection of records with some arbitrary sort order
 
+## Typescript Tuple
+
+Array-like structure where each element presents some property of a record
+
+Examples of tuples
+
+```ts
+const drink = {
+  color: 'brown',
+  carbonated: true,
+  sugar: 40,
+};
+
+// type alias has to have an order of string, boolean, number
+type Drink = [string, boolean, number];
+
+const pepsi: Drink = ['brown', true, 40];
+//pepsi[0] = 40; // you get an error
+const sprite: Drink = ['clear', true, 40];
+const tea: Drink = ['brown', false, 0];
+```
+
+**it is hard to represnet meaningful data with tuple**
+**Using objects is more desirable**
+
 ## Design Patterns
